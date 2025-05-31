@@ -1,3 +1,8 @@
+> ### WARNING
+> This repo is not ready to be shared yet.  It will probably change drastically several more times and probably has some bugs
+> I am building publicly for those that follow, but please do not share widely on social media or other sites just yet!
+
+
 # AI Code Assistant
 
 A minimal AI coding agent that can read, write, and execute code in your projects using Google's Gemini API.
