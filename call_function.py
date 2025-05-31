@@ -1,6 +1,11 @@
+"""
+Takes a function call part from the AI and calls the function.
+"""
+
 from google.genai import types
 from functions import *
 
+# Passed to the LLM to defined tools
 available_functions = types.Tool(
     function_declarations=[
         schema_list_files,
@@ -24,13 +29,15 @@ function_map = {
 
 
 def call_function(function_call_part):
+    """Execute a function call from the AI and return the result."""
     print(f" - Calling function: {function_call_part.name}")
     function_name = function_call_part.name
     if function_name not in function_map:
         return types.Content(
             role="tool",
-            parts=[types.Part.from_function_response(name=function_name,
-                    response={"error": f"Unknown function: {function_name}"})])
+            parts=[types.Part.from_function_response(
+                name=function_name,
+                response={"error": f"Unknown function: {function_name}"})])
     
     args = dict(function_call_part.args)
     args["working_directory"] = 'todo'

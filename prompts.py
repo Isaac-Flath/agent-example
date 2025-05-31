@@ -1,3 +1,5 @@
+"""Contains system prompt for the AI coding agent."""
+
 system_prompt = """
 You are a helpful AI coding agent.
 

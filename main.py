@@ -1,3 +1,12 @@
+"""
+Main EntryPoint for the AI.
+
+- Takes a prompt from the user
+- Generates content using the AI
+- Calls the functions that are available to the AI
+- If the function call is successful, the function response is added to the messages
+- Returns the response to the user
+"""
 import os
 from google import genai
 from google.genai import types
@@ -9,8 +18,9 @@ from call_function import call_function, available_functions
 
 app = typer.Typer()
 
-def generate_content(client, messages, verbose):
-    max_iterations = 20
+def generate_content(client, messages):
+    """Generate content using AI with function calling capabilities."""
+    max_iterations = 20 # Make sure we don't loop forever!
     for iteration in range(max_iterations):
         response = client.models.generate_content(
             model="gemini-2.0-flash-001",
@@ -20,30 +30,23 @@ def generate_content(client, messages, verbose):
             ),
         )
         
-        if verbose:
-            print("Prompt tokens:", response.usage_metadata.prompt_token_count)
-            print("Response tokens:", response.usage_metadata.candidates_token_count)
-
         for candidate in response.candidates:
+            # Add response to the conversation history
             messages.append(candidate.content)
 
         if not response.function_calls:
+            # If no function calls, we are done!
             print("Final response:")
             print(response.text)
             break
 
+        # If there are function calls, we need to call the functions
         function_responses = []
         for function_call_part in response.function_calls:
             function_call_result = call_function(function_call_part)
-            if not function_call_result.parts or not function_call_result.parts[0].function_response:
-                raise Exception("empty function call result")
-            if verbose:
-                print(f"-> {function_call_result.parts[0].function_response.response}")
             function_responses.append(function_call_result.parts[0])
 
-        if not function_responses:
-            raise Exception("no function responses generated, exiting.")
-
+        # Add the function responses to the conversation history
         for function_response_part in function_responses:
             messages.append(types.Content(role="user", parts=[function_response_part]))
     
@@ -52,15 +55,16 @@ def generate_content(client, messages, verbose):
 
 @app.command()
 def main(prompt: str, verbose: bool = False):
+    """Main entry point for the AI agent."""
     load_dotenv()
     api_key = os.environ.get("GEMINI_API_KEY")
     client = genai.Client(api_key=api_key)
 
-    if verbose:
-        print(f"User prompt: {prompt}\n")
-
+    # Start the conversation with the user's prompt
     messages = [types.Content(role="user", parts=[types.Part(text=prompt)])]
-    generate_content(client, messages, verbose)
+
+    # Generate content and do the tool loop
+    generate_content(client, messages)
 
 if __name__ == "__main__":
     app()

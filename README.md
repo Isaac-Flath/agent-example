@@ -66,29 +66,23 @@ python main.py "What does the README say about the todo app?"
 python main.py "Show me my current todo list"
 ```
 
-**Add a new todo:**
-```bash
-python main.py "Add a todo: Learn Python fundamentals"
-```
-
-**Mark a todo as complete:**
-```bash
-python main.py "Mark todo number 1 as done"
-```
-
 **Add multiple todos:**
 ```bash
 python main.py "Add three todos: buy groceries, call mom, finish project"
 ```
 
-### Code Analysis and Improvement
-
-**Analyze the code:**
+**Add multiple todos:**
 ```bash
-python main.py "Analyze the todo app code and suggest improvements"
+python main.py "Mark all my todos as done"
 ```
 
-### Code Modifications
+### Coding Tasks
+
+**Analyze the code:**
+
+```bash
+python main.py "Analyze the todo app code and suggest improvements without making any code changes"
+```
 
 **Add a new feature:**
 ```bash
@@ -103,3 +97,43 @@ python main.py list
 python main.py delete 1
 python main.py list
 ```
+
+# Things you could do for learning
+
+Lots of options. 
+
+**Complete Missing Todo Features:**
+- Add delete option to todo app, then add it as a function for the agent to call
+- Add todo priority levels (high, medium, low) with color coding and improve agent to be able to filter by them
+- Add due dates to todos with simple date parsing
+
+**Improve User Experience:**
+- Add y/n confirmation prompts for destructive operations (file overwrites, deletions)
+- Improve CLI output formatting with better colors so it feels good
+- Add a verbose mode so when people want they can see more details of what's going on.  Format it so it's readable and feels good.
+
+**Enhanced File Operations:**
+- Add `search_files` function to find text patterns across multiple files
+- Add `backup_file` and `restore_file` functions for file versioning
+- Create `create_directory` and `remove_directory` functions
+- Add metadata info to `list_files` (such as modified date)
+
+**Evals:**
+- Create a logging/tracing system to track all agent actions and errors
+- Store traces somewhere (disk, pheonix, etc).
+- Evaluate and create a eval set (see [AI Evals Course](bit.ly/evals-ai) for lots of information on how to do this)
+- Iterate and improve prompt based on evals
+
+**Add conversation memory to remember context between interactions**
+
+**Development Tools:**
+- Add git integration (status, add, commit, diff)
+- Create `run_command` function to execute shell commands safely (with permission)
+
+**Configuration & Extensibility:**
+- Create a config file system for customizing agent behavior
+- Add support for multiple working directories
+
+**Implement streaming for large file operations**
+
+**Create database integration for persistent data**

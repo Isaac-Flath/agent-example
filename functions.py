@@ -1,3 +1,8 @@
+"""File that contains:
+
+- python functions that will be available to the AI
+- schemas for the functions that will be used by the AI to determine when to call the function
+"""
 import os, subprocess
 import difflib
 import json
@@ -22,8 +27,8 @@ __all__ = [
 ]
 MAX_CHARS = 100000
 
-
 def handle_errors(func):
+    """Decorator that catches exceptions and returns error messages."""
     def wrapper(*args, **kwargs):
         try:
             return func(*args, **kwargs)
@@ -31,8 +36,12 @@ def handle_errors(func):
             return f"Error: {e}"
     return wrapper
 
+###
+# Functions that are called by the AI
+###
 @handle_errors
 def list_files(working_directory, directory=None):
+    """List files and directories in the specified directory."""
     if directory:
         target_dir = os.path.abspath(os.path.join(working_directory, directory))
         if not target_dir.startswith(os.path.abspath(working_directory)):
@@ -52,6 +61,7 @@ def list_files(working_directory, directory=None):
 
 @handle_errors
 def get_file_content(working_directory, file_path):
+    """Read and return the content of a file."""
     abs_path = os.path.abspath(os.path.join(working_directory, file_path))
     if not abs_path.startswith(os.path.abspath(working_directory)):
         return f'Error: Cannot access "{file_path}" as it is outside the permitted working directory'
@@ -67,6 +77,7 @@ def get_file_content(working_directory, file_path):
 
 @handle_errors
 def overwrite_file(working_directory, file_path, content):
+    """Write content to a file, creating it if it doesn't exist."""
     abs_path = os.path.abspath(os.path.join(working_directory, file_path))
     if not abs_path.startswith(os.path.abspath(working_directory)):
         return f'Error: Cannot write to "{file_path}" as it is outside the permitted working directory'
@@ -77,6 +88,7 @@ def overwrite_file(working_directory, file_path, content):
 
 @handle_errors
 def replace_str_file(working_directory, file_path, old_str, new_str):
+    """Replace all occurrences of a string in a file and show diff."""
     abs_path = os.path.abspath(os.path.join(working_directory, file_path))
     if not abs_path.startswith(os.path.abspath(working_directory)):
         return f'Error: Cannot access "{file_path}" as it is outside the permitted working directory'
@@ -177,7 +189,10 @@ def todo_done(working_directory, index):
     else:
         return "❌ Invalid todo number"
 
+###
 # Schemas
+###
+
 schema_list_files = types.FunctionDeclaration(
     name="list_files",
     description="Lists files and directories in the specified directory, constrained to the working directory.",

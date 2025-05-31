@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Simple command-line todo list application using Typer."""
 import json
 import os
 import typer
@@ -7,12 +8,14 @@ TODO_FILE = "todos.json"
 app = typer.Typer()
 
 def load_todos():
+    """Load todos from JSON file or return empty list if file doesn't exist."""
     if os.path.exists(TODO_FILE):
         with open(TODO_FILE, 'r') as f:
             return json.load(f)
     return []
 
 def save_todos(todos):
+    """Save todos list to JSON file."""
     with open(TODO_FILE, 'w') as f:
         json.dump(todos, f, indent=2)
 
