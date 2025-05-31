@@ -47,7 +47,7 @@ python main.py "What files are in the todo directory?"
 
 **Read the todo app code:**
 ```bash
-python main.py "What's the main.py directory do?"
+python main.py "What's the main.py file do?"
 ```
 
 **Read the README:**
