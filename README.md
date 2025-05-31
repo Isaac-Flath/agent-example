@@ -98,6 +98,13 @@ python main.py delete 1
 python main.py list
 ```
 
+# Future Plans for the Repo
+
+- Add a variety of agent examples not just coding/todo
+- Inspect for evals setup
+- RL
+- Tracing
+
 # Things you could do for learning
 
 Lots of options. 
