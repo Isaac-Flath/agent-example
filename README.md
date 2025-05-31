@@ -27,7 +27,6 @@ python main.py "your prompt here" [--verbose]
 The AI agent can:
 - List files and directories
 - Read file contents
-- Execute Python files with optional arguments
 - Write or overwrite files
 - Replace strings in files (shows diff of changes)
 - Add todo items
@@ -99,17 +98,3 @@ python main.py list
 python main.py delete 1
 python main.py list
 ```
-
-## Verbose Mode
-
-Add `--verbose` to see detailed function calls and token usage:
-
-```bash
-python main.py "Show me the todo app code" --verbose
-```
-
-This will display:
-- The exact prompt sent to the AI
-- Function calls being made
-- Function responses
-- Token usage statistics
