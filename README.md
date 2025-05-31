@@ -77,30 +77,11 @@ python main.py "Mark todo number 1 as done"
 python main.py "Add three todos: buy groceries, call mom, finish project"
 ```
 
-### Running the Todo App
-
-`cd` into the todo directory
-
-**Test the todo app directly:**
-```bash
-python main.py "list my todoes"
-```
-
 ### Code Analysis and Improvement
 
 **Analyze the code:**
 ```bash
 python main.py "Analyze the todo app code and suggest improvements"
-```
-
-**Check for bugs:**
-```bash
-python main.py "Review the todo app for potential bugs or issues"
-```
-
-**Explain the code:**
-```bash
-python main.py "Explain how the todo app works step by step"
 ```
 
 ### Code Modifications
