@@ -2,7 +2,7 @@ import os, subprocess
 import difflib
 import json
 from google.genai import types
-
+import typer
 
 __all__ = [
     "list_files",
@@ -90,7 +90,6 @@ def replace_str_file(working_directory, file_path, old_str, new_str):
         return f'String "{old_str}" not found in file "{file_path}"'
     
     new_content = original_content.replace(old_str, new_str)
-    
     diff = list(difflib.unified_diff(
         original_content.splitlines(keepends=True),
         new_content.splitlines(keepends=True),
@@ -101,7 +100,18 @@ def replace_str_file(working_directory, file_path, old_str, new_str):
     with open(abs_path, 'w', encoding='utf-8') as f:
         f.write(new_content)
     
-    return ''.join(diff) if diff else f'Successfully replaced "{old_str}" with "{new_str}" in {file_path}'
+    if diff:
+        typer.echo(typer.style("Changes:", fg=typer.colors.BLUE, bold=True))
+        for line in diff:
+            if line.startswith('+'):
+                typer.echo(typer.style(line, fg=typer.colors.GREEN))
+            elif line.startswith('-'):
+                typer.echo(typer.style(line, fg=typer.colors.RED))
+            else:
+                typer.echo(line)
+        return ''.join(diff)
+    else:
+        return f'Successfully replaced "{old_str}" with "{new_str}" in {file_path}'
 
 @handle_errors
 def todo_add(working_directory, task):

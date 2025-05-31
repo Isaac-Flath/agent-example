@@ -34,7 +34,7 @@ def generate_content(client, messages, verbose):
 
         function_responses = []
         for function_call_part in response.function_calls:
-            function_call_result = call_function(function_call_part, verbose)
+            function_call_result = call_function(function_call_part)
             if not function_call_result.parts or not function_call_result.parts[0].function_response:
                 raise Exception("empty function call result")
             if verbose:

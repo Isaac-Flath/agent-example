@@ -4,8 +4,7 @@ A minimal AI coding agent that can read, write, and execute code in your project
 
 ## Credit
 
-This was heavily inspired and some pieces of the code come from an upcoming agent course on boot.dev (not yet released!).  If you want to learn to build a different coding agent in a complete and step-by-step way, check out boot.dev.  The code in this repo is more minimal and less robust that you will learn in the boot.dev course.
-
+This was heavily inspired and some pieces of the code come from an upcoming agent course on [boot.dev](https://www.boot.dev/dashboard?promo=ISAAC) that I have seen the beta version of (not yet released!).  If you want to learn to build a different coding agent step-by-step way, check out boot.dev.  The code in this repo is more minimal and less robust that you will learn in the boot.dev course.
 
 ## Setup
 
@@ -80,6 +79,8 @@ python main.py "Add three todos: buy groceries, call mom, finish project"
 
 ### Running the Todo App
 
+`cd` into the todo directory
+
 **Test the todo app directly:**
 ```bash
 python main.py "list my todoes"
@@ -109,41 +110,13 @@ python main.py "Explain how the todo app works step by step"
 python main.py "Add a delete todo function to the todo app"
 ```
 
-**Improve the styling:**
-```bash
-python main.py "Make the todo app output look more colorful and engaging"
-```
+Test it
 
-**Add error handling:**
 ```bash
-python main.py "Improve error handling in the todo app"
-```
-
-**Refactor the code:**
-```bash
-python main.py "Refactor the todo app to be more modular"
-```
-
-### Advanced Examples
-
-**Create a new file:**
-```bash
-python main.py "Create a test file for the todo app with some basic tests"
-```
-
-**Fix a specific issue:**
-```bash
-python main.py "The todo app crashes when I try to mark item 999 as done. Fix this bug."
-```
-
-**Add documentation:**
-```bash
-python main.py "Add docstrings to all functions in the todo app"
-```
-
-**Combine todo operations:**
-```bash
-python main.py "Show my todos, add 'review code', then show the updated list"
+cd todo
+python main.py list
+python main.py delete 1
+python main.py list
 ```
 
 ## Verbose Mode
