@@ -9,7 +9,7 @@ A minimal AI coding agent that can read, write, and execute code in your project
 
 ## Credit
 
-This was heavily inspired and some pieces of the code come from an upcoming agent course on [boot.dev](https://www.boot.dev/dashboard?promo=ISAAC) that I have seen the beta version of (not yet released!).  If you want to learn to build a different coding agent step-by-step way and learn all the details along the way, check out boot.dev.  The code in this repo is more minimal and less robust that you will learn in the boot.dev course.
+This was heavily inspired and some pieces of the code from the agent course on [boot.dev](https://www.boot.dev/dashboard?promo=ISAAC) that I have seen the beta version of (not yet released!).  If you want to learn to build a different coding agent step-by-step way and learn all the details along the way, check out boot.dev.  The code in this repo is more minimal and less robust that you will learn in the boot.dev course.
 
 ## Setup
 
