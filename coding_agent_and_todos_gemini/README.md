@@ -1,7 +1,4 @@
 > ### WARNING
-> This repo is not ready to be shared yet.  It will probably change drastically several more times and probably has some bugs
-> I am building publicly for those that follow, but please do not share widely on social media or other sites just yet!
-
 
 # AI Code Assistant
 
@@ -9,7 +6,7 @@ A minimal AI coding agent that can read, write, and execute code in your project
 
 ## Credit
 
-This was heavily inspired and some pieces of the code from the agent course on [boot.dev](https://www.boot.dev/dashboard?promo=ISAAC) that I have seen the beta version of (not yet released!).  If you want to learn to build a different coding agent step-by-step way and learn all the details along the way, check out boot.dev.  The code in this repo is more minimal and less robust that you will learn in the boot.dev course. The boot.dev course is broken up over many lessons to help you learn things the right way.
+This was heavily inspired and some pieces of the code come from the agent course on [boot.dev](https://www.boot.dev/dashboard?promo=ISAAC).  If you want to learn to build a different coding agent step-by-step way and learn all the details along the way, check out boot.dev.  The code in this repo is more minimal and less robust that you will learn in the boot.dev course.
 
 ## Setup
 
