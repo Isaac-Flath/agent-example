@@ -1,15 +1,6 @@
 # LLM Coding Agent
 
-A lightweight implementation of a coding agent using Simon Willison's LLM library. This provides the same functionality as the Gemini version but with support for multiple LLM providers and a cleaner architecture.
-
-## Features
-
-- 🤖 Uses claude-3.5-sonnet by default (configurable)
-- 📁 File operations (list, read, write, replace) constrained to `todo/` directory
-- ✅ Todo management (add, list, mark done)
-- 🔄 Streaming output support
-- 🛡️ Security constraints to prevent directory traversal
-- 🎨 Rich CLI interface with Typer
+A lightweight implementation of a coding agent using Simon Willison's LLM library.
 
 ## Installation
 
