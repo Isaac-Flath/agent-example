@@ -234,7 +234,6 @@ Be helpful and concise in your responses."""
 def main(
     prompt: str = typer.Argument(..., help="Your prompt for the AI assistant"),
     model: str = typer.Option("claude-3.5-sonnet", "--model", "-m", help="LLM model to use"),
-    stream: bool = typer.Option(True, "--stream/--no-stream", help="Stream output"),
 ):
     """AI coding assistant with file and todo management."""
     try:
@@ -257,12 +256,9 @@ def main(
         response = conversation.chain(prompt, system=create_system_prompt())
         
         # Output response
-        if stream:
-            for chunk in response:
-                print(chunk, end="", flush=True)
-            print()
-        else:
-            print(response.text())
+        for chunk in response:
+            print(chunk, end="", flush=True)
+        print()
             
         # Show tool usage in verbose mode
         if hasattr(response, 'responses'):
