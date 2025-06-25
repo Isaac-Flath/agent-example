@@ -255,6 +255,9 @@ def main(
         # Execute prompt
         response = conversation.chain(prompt, system=create_system_prompt())
         
+        # Collect all tool calls before displaying
+        all_tool_calls = []
+        
         # Output response
         for chunk in response:
             print(chunk, end="", flush=True)
@@ -262,14 +265,24 @@ def main(
             
         # Show tool usage in verbose mode
         if hasattr(response, 'responses'):
+            seen_calls = set()  # Track unique tool calls
             for r in response.responses():
                 if hasattr(r, 'tool_calls'):
                     calls = r.tool_calls()
                     if calls:
-                        typer.secho("\nTool calls:", fg=typer.colors.GREEN)
                         for call in calls:
-                            args = ', '.join(f'{k}={v!r}' for k,v in call.arguments.items())
-                            typer.echo(f"  - {call.name}({args})")
+                            # Create a unique identifier for each tool call
+                            call_id = f"{call.name}_{call.arguments}"
+                            if call_id not in seen_calls:
+                                seen_calls.add(call_id)
+                                all_tool_calls.append(call)
+        
+        # Display unique tool calls once at the end
+        if all_tool_calls:
+            typer.secho("\nTool calls:", fg=typer.colors.GREEN)
+            for call in all_tool_calls:
+                args = ', '.join(f'{k}={v!r}' for k,v in call.arguments.items())
+                typer.echo(f"  - {call.name}({args})")
             
     except llm.APIError as e:
         if "api" in str(e).lower() and "key" in str(e).lower():
